@@ -11,13 +11,28 @@ body {
     color: white;
     border: none;
     border-radius: 24px;
-    padding: 10px 18px;
+    padding: 12px 22px;
     display: inline-flex;
     align-items: center;
     font-size: 16px;
     cursor: pointer;
     gap: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 29px 0 rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .g-translate-box.red-theme .language-button {
+    background-color: #ce173c;
+  }
+  
+  .g-translate-box.green-theme .language-button {
+    background-color: #17ce3c;
+  }
+
+  .language-button .chevron-down {
+    margin-left: auto;
   }
 
   /*

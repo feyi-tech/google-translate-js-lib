@@ -60,7 +60,7 @@ const defaultLangLoadCompleteCheckerText = "Hello! How're is everyone over there
 function detectUserLanguage(container) {
   const langs = getLanguages()
   console.log("detectUserLanguage.languages", langs)
-  const attrLang = container[0].dataset.lang;
+  const attrLang = container[0]?.dataset?.lang;
   if (attrLang && langs[attrLang]) {
       console.log("lang: ", attrLang, langs[attrLang])
       return attrLang;
@@ -147,8 +147,20 @@ window.addEventListener("DOMContentLoaded", () => {
   
       const flagImg = document.createElement("img");
       const label = document.createElement("span");
+      const arrow = document.createElement("div");/*
+      arrow.classList.add("chevron-down")
+      arrow.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+      arrow.setAttribute("width", "14")
+      arrow.setAttribute("height", "14")
+      arrow.setAttribute("viewBox", "0 0 20 20")
+      arrow.setAttribute("fill", "none")*/
+      arrow.innerHTML = `<svg class="chevron-down" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20" fill="none">
+    <path d="M5 7L10 12L15 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`
+
       button.appendChild(flagImg);
       button.appendChild(label);
+      button.appendChild(arrow)
     
       // Add event listener if needed
       button.addEventListener("click", () => modal.style.display = "flex");
