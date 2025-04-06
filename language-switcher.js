@@ -96,12 +96,6 @@ function createLanguageButton() {
   return button;
 }
 
-const boxes = document.querySelectorAll(".g-translate-box");
-boxes.forEach(box => {
-  const button = createLanguageButton();
-  box.appendChild(button);
-});
-
 window.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelectorAll(".g-translate-box");
   if (!container) return;
