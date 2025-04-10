@@ -121,6 +121,10 @@
     height: 16px;
     border-radius: 2px;
   }
+
+  .load-detector {
+    opacity: 0;
+  }
   
   
 #goog-gt-tt, iframe.VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd-ZVi9od-aZ2wEe-wOHMyf {display: none !important; height: 0px !important;}

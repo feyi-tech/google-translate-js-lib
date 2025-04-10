@@ -177,7 +177,7 @@ function initLanguageSelectors() {
 
   // Create translated indicator
   const done = document.createElement("div");
-  done.innerHTML = `<div id="${TRANSLATION_COMPLETE_ELEMENT_ID}" style="display:none!important">${defaultLangLoadCompleteCheckerText}</div>`;
+  done.innerHTML = `<div id="${TRANSLATION_COMPLETE_ELEMENT_ID}" class="load-detector">${defaultLangLoadCompleteCheckerText}</div>`;
   document.body.appendChild(done);
 
   // Create modal
