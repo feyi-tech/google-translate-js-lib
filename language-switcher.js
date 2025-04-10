@@ -1,6 +1,5 @@
 const defaultLang = "en";
 const translationTimeout = 10000;
-const mustTranslate = true
 const TRANSLATION_COMPLETE_ELEMENT_ID = "TRANSLATION_COMPLETE_ELEMENT_ID"
 const defaultLangLoadCompleteCheckerText = "Hello! How're is everyone over there?"
 
@@ -106,7 +105,7 @@ const pollTranslateComplete = (startTimeMillis) => {
           setTranslating(false)
           updateButtonLang(lng)
       } else if((new Date()).getTime() - startTimeMillis >= translationTimeout) {
-          if(mustTranslate) {
+          if(window.onGetMustTranslate && window.onGetMustTranslate()) {
               location.reload();
 
           } else {
