@@ -35,6 +35,15 @@ function getLanguages() {
   } else { return languages }
 }
 
+function getTimeout() {
+  if(window.onGetTranslateTimeout) {
+    return window.onGetTranslateTimeout()
+
+  } else { 
+    return translationTimeout 
+  }
+}
+
 function addScriptWithContent(scriptContent) {
   // Create a script element
   const script = document.createElement('script');
@@ -104,7 +113,7 @@ const pollTranslateComplete = (startTimeMillis) => {
       if(document && document.querySelector(`#${TRANSLATION_COMPLETE_ELEMENT_ID}`)?.textContent != defaultLangLoadCompleteCheckerText || lng == defaultLang) {
           setTranslating(false)
           updateButtonLang(lng)
-      } else if((new Date()).getTime() - startTimeMillis >= translationTimeout) {
+      } else if((new Date()).getTime() - startTimeMillis >= getTimeout()) {
           if(window.onGetMustTranslate && window.onGetMustTranslate()) {
               location.reload();
 
