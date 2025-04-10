@@ -1,11 +1,4 @@
-/* General Reset */
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f9f9f9;
-    padding: 20px;
-  }
-  
-  /* Language Button */
+/* Language Button */
   .language-button {
     background-color: #007BFF;
     color: white;
@@ -131,4 +124,3 @@ body {
   
   
 #goog-gt-tt, iframe.VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd-ZVi9od-aZ2wEe-wOHMyf {display: none !important; height: 0px !important;}
-body {top: 0px !important}
