@@ -1,6 +1,6 @@
 const defaultLang = "en";
-const translationTimeout = 5000;
-const mustTranslate = false
+const translationTimeout = 10000;
+const mustTranslate = true
 const TRANSLATION_COMPLETE_ELEMENT_ID = "TRANSLATION_COMPLETE_ELEMENT_ID"
 const defaultLangLoadCompleteCheckerText = "Hello! How're is everyone over there?"
 
@@ -159,7 +159,7 @@ function updateButtonLang(code) {
   container.forEach(box => {
       box.querySelector("img").src = flag;
       const modalOption = document.getElementById(`modal_option_${code}`)
-      box.querySelector("span").textContent = modalOption && code == getPreferredLanguage()? modalOption.textContent : name;
+      box.querySelector("span").textContent = modalOption && code == getPreferredLanguage() && modalOption.textContent && modalOption.textContent.length > 0? modalOption.textContent : name;
   });
 }
 
@@ -318,6 +318,8 @@ document.addEventListener("DOMContentLoaded", () => {
   pollTranslateComplete((new Date()).getTime());
 
   injectGoogleTranslate(() => {
+    //const current = getPreferredLanguage();
+    //updateButtonLang(current)
   })
 });
 
