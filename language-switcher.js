@@ -70,19 +70,25 @@ function setCookie(name, value, days) {
   const encoded = value//encodeURIComponent(value || "");
 
   // Set for current domain (no explicit domain)
-  document.cookie = `${name}=${encoded}${expires}; path=/`;
+  //document.cookie = `${name}=${encoded}${expires}; path=/`;
 
   // Set for exact domain
-  document.cookie = `${name}=${encoded}${expires}; path=/; domain=${location.hostname}`;
+  //document.cookie = `${name}=${encoded}${expires}; path=/; domain=${location.hostname}`;
 
   // Set for wildcard domain
   document.cookie = `${name}=${encoded}${expires}; path=/; domain=.${location.hostname}`;
 }
 
 function deleteCookie(name) {
-  document.cookie = name + "=; Max-Age=0; path=/;";
-  document.cookie = name + "=; Max-Age=0; path=/; domain=" + location.hostname + ";";
-  document.cookie = name + "=; Max-Age=0; path=/; domain=." + location.hostname + ";";
+  try{
+    document.cookie = name + "=; Max-Age=0; path=/;";
+  } catch(e) {}
+  try{
+    document.cookie = name + "=; Max-Age=0; path=/; domain=" + location.hostname + ";";
+  } catch(e) {}
+  try{
+    document.cookie = name + "=; Max-Age=0; path=/; domain=." + location.hostname + ";";
+  } catch(e) {}
 }
 
 function getCookie(name) {
@@ -313,6 +319,9 @@ function changeLanguage(langCode) {
   if(langCode.toLowerCase() != current) {
     setTranslating(true);
 
+    try {
+      deleteCookie("googtrans")
+    } catch(e) {}
     setCookie("googtrans", `/${defaultLang}/${langInfo.googleCode}`, 365)
     location.reload();
   }
