@@ -311,7 +311,10 @@ function getPreferredLanguage() {
 // 🌐 Language switch logic
 function changeLanguage(langCode) {
   const langInfo = getLanguages()[langCode]
-  if (!langInfo) return;
+  if (!langInfo) {
+    console.error("changeLanguage.noLangInfo: ", getLanguages(), langInfo, langCode)
+    return;
+  }
   
   const current = getPreferredLanguage();
 
@@ -322,7 +325,10 @@ function changeLanguage(langCode) {
 
     try {
       deleteCookie("googtrans")
-    } catch(e) {}
+    } catch(e) {
+      console.error("changeLanguage.Error deleting googtrans: ", e)
+    }
+    console.log("changeLanguage.googtrans: ", `/${defaultLang}/${langInfo.googleCode}`)
     setCookie("googtrans", `/${defaultLang}/${langInfo.googleCode}`, 365)
     location.reload();
   }
