@@ -79,16 +79,29 @@ function setCookie(name, value, days) {
   document.cookie = `${name}=${encoded}${expires}; path=/; domain=.${location.hostname}`;
 }
 
-function deleteCookie(name) {
-  try{
-    document.cookie = name + "=; Max-Age=0; path=/;";
-  } catch(e) {}
-  try{
-    document.cookie = name + "=; Max-Age=0; path=/; domain=" + location.hostname + ";";
-  } catch(e) {}
-  try{
-    document.cookie = name + "=; Max-Age=0; path=/; domain=." + location.hostname + ";";
-  } catch(e) {}
+function deleteCookie(cookieName) {
+  if (!cookieName) return;
+
+  const paths = ["/"];
+  const hostname = location.hostname;
+  const domainParts = hostname.split(".");
+  const domains = [];
+
+  // Create variations of the domain (e.g., example.com, .example.com, sub.example.com, etc.)
+  for (let i = 0; i < domainParts.length - 1; i++) {
+    const domain = domainParts.slice(i).join(".");
+    domains.push(domain);
+    domains.push("." + domain);
+  }
+
+  paths.forEach(path => {
+    domains.forEach(domain => {
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}; domain=${domain};`;
+    });
+
+    // Also try without domain
+    document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path};`;
+  });
 }
 
 function getCookie(name) {
