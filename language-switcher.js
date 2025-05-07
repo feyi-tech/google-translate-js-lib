@@ -115,9 +115,9 @@ const setTranslating = (translating) => {
 
 const pollTranslateComplete = (startTimeMillis) => {
   setTimeout(() => {
-      const lng = getPreferredLanguage();
       if(document && document.querySelector(`#${TRANSLATION_COMPLETE_ELEMENT_ID}`)?.textContent != defaultLangLoadCompleteCheckerText || lng == defaultLang) {
           setTranslating(false)
+          const lng = getPreferredLanguage();
           updateButtonLang(lng)
       } else if((new Date()).getTime() - startTimeMillis >= getTimeout()) {
           if(window.onGetMustTranslate && window.onGetMustTranslate()) {
@@ -125,6 +125,8 @@ const pollTranslateComplete = (startTimeMillis) => {
 
           } else {
               setTranslating(false)
+              const lng = getPreferredLanguage();
+              updateButtonLang(lng)
           }
 
       } else {
